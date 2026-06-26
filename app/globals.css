@@ -1,0 +1,395 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg: #ffffff;
+    --surface: #f8f9fa;
+    --border: 214.3 31.8% 91.4%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+
+  /* Technical Blueprint Grid */
+  .blueprint-bg {
+    background-image:
+      linear-gradient(rgba(99, 102, 241, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(99, 102, 241, 0.04) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-position: center center;
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+  }
+
+  /* Handcrafted Editorial Cards */
+  .editorial-card {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s cubic-bezier(0.2, 1, 0.3, 1);
+    border-radius: 0.75rem;
+  }
+
+  .editorial-card:hover {
+    border-color: hsl(var(--primary) / 0.2);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.05);
+    transform: translateY(-2px);
+  }
+
+  .line-accent {
+    height: 1px;
+    background: hsl(var(--border));
+    width: 100%;
+    margin: 2rem 0;
+  }
+
+  /* Typography */
+  .display-large {
+    font-size: clamp(3rem, 10vw, 8.5rem);
+    font-weight: 800;
+    line-height: 0.85;
+    letter-spacing: -0.05em;
+  }
+
+  .label-mono {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* Micro-details */
+  .spec-number {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    font-family: monospace;
+    color: hsl(var(--muted-foreground));
+    font-size: 10px;
+  }
+
+  .btn-handcrafted {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-handcrafted:hover {
+    background: hsl(var(--primary) / 0.9);
+    transform: scale(1.02);
+  }
+
+  /* Reveal Animation Utility */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/30 selection:text-primary-foreground;
+    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-white via-white/80 to-white/60;
+  }
+
+  .text-gradient-primary {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400;
+  }
+
+  .glass {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10;
+  }
+
+  .glass-card {
+    @apply bg-gradient-to-b from-white/10 to-white/5 backdrop-blur-xl border border-white/10 shadow-xl;
+  }
+
+  .glow {
+    box-shadow: 0 0 20px -5px theme('colors.primary.DEFAULT');
+  }
+}
+
+/* Animations */
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Add this new animation for the loading indicator */
+@keyframes loading {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  50% {
+    transform: translateX(100%);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.email-preview {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
+    "Helvetica Neue", sans-serif;
+  color: #333;
+  line-height: 1.5;
+}
+
+.email-preview h1,
+.email-preview h2,
+.email-preview h3,
+.email-preview h4,
+.email-preview h5,
+.email-preview h6 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.email-preview p {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.email-preview a {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.email-preview img {
+  max-width: 100%;
+  height: auto;
+}
+
+.email-preview table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.email-preview table td,
+.email-preview table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.email-preview table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.email-preview table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+/* Dark mode styles */
+.dark .email-preview {
+  color: #e5e7eb;
+}
+
+.dark .email-preview a {
+  color: #60a5fa;
+}
+
+.dark .email-preview table td,
+.dark .email-preview table th {
+  border-color: #374151;
+}
+
+.dark .email-preview table tr:nth-child(even) {
+  background-color: #0f0f10;
+  /* Updated to match the new dark theme */
+}
+
+.dark .email-preview table th {
+  background-color: #000000;
+  /* Updated to true black */
+  color: #e5e7eb;
+}
+
+.bg-grid-white\/10 {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.1)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+}
+
+.dark .bg-grid-white\/10 {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(255 255 255 / 0.2)'%3e%3cpath d='M0 .5H31.5V32'/%3e%3c/svg%3e");
+}
